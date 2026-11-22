@@ -43,6 +43,7 @@ def web_search_and_scrape(query: str) -> str:
             query=query.strip(),
             search_depth="basic",
             max_results=5,
+            timeout=30,
         )
         results = response.get("results", [])
         return format_search_results(query.strip(), results)

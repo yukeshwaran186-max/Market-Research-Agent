@@ -33,15 +33,15 @@ os.environ["OTEL_SDK_DISABLED"] = "true"
 # API Keys and Model Settings
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY", "")
-# Default to the current Gemini Flash model
-DEFAULT_GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+# Default to the active Gemini Flash model with .env override support
+DEFAULT_GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3-flash-preview")
 GEMINI_API_BASE = os.getenv(
     "GEMINI_API_BASE",
     "https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 
 
-def get_llm(model: str | None = None, temperature: float = 0.5):
+def get_llm(model: str | None = None, temperature: float = 0.5, timeout: int = 120):
     """Instantiate and return a CrewAI-compatible LLM instance for Gemini.
 
     Uses the verified Gemini model and routes via Google's OpenAI-compatible
@@ -65,6 +65,7 @@ def get_llm(model: str | None = None, temperature: float = 0.5):
             model=model_name,
             api_key=api_key,
             temperature=temperature,
+            timeout=timeout,
         )
 
     # Route via Gemini's OpenAI-compatible endpoint using installed openai dependency
@@ -75,12 +76,13 @@ def get_llm(model: str | None = None, temperature: float = 0.5):
         base_url=GEMINI_API_BASE,
         custom_openai=True,
         temperature=temperature,
+        timeout=timeout,
     )
 
 
-def get_manager_llm(model: str | None = None, temperature: float = 0.2):
+def get_manager_llm(model: str | None = None, temperature: float = 0.2, timeout: int = 120):
     """Return a manager LLM instance with lower temperature for hierarchical orchestration."""
-    return get_llm(model=model, temperature=temperature)
+    return get_llm(model=model, temperature=temperature, timeout=timeout)
 
 
 def validate_environment(require_tavily: bool = True) -> dict[str, bool]:
