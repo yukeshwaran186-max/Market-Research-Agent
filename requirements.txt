@@ -8,3 +8,4 @@ reportlab
 pytest
 requests
 beautifulsoup4
+google-genai
