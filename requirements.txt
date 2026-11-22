@@ -1,0 +1,10 @@
+crewai
+crewai-tools
+python-dotenv
+google-generativeai
+tavily-python
+pandas
+reportlab
+pytest
+requests
+beautifulsoup4
