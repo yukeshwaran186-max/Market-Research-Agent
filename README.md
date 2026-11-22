@@ -95,7 +95,7 @@ MarketResearchAgent/
    ```env
    GEMINI_API_KEY=your_gemini_api_key_here
    TAVILY_API_KEY=your_tavily_api_key_here
-   GEMINI_MODEL=gemini-2.5-flash
+   GEMINI_MODEL=gemini-3-flash-preview
    ```
    > **Note**: API keys are loaded exclusively from `.env` and are never hardcoded or tracked in version control.
 
@@ -172,7 +172,9 @@ pytest tests/test_pdf_generator.py -v
 
 - **Windows Permission / AppData Issues**:
   The system automatically redirects CrewAI local credential storage to `.crewai_cache/` in the workspace, bypassing Windows `AppData/Local` sandbox permission locks.
+
 - **Tavily Search Key**:
   If Tavily returns authentication errors, verify `TAVILY_API_KEY` in `.env`. You can always run with `--mock` to test downstream reporting without network or API dependencies.
+
 - **Gemini Model Version**:
-  The system defaults to `gemini-2.5-flash` with automatic OpenAI-compatible endpoint routing for native compatibility with the installed environment.
+  The application uses CrewAI's native Gemini provider through the `google-genai` SDK. The default model is `gemini-3-flash-preview`, configurable through `GEMINI_MODEL` in `.env`.
