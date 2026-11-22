@@ -33,8 +33,8 @@ os.environ["OTEL_SDK_DISABLED"] = "true"
 # API Keys and Model Settings
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY", "")
-# Default to gemini-2.5-flash as verified available in the user environment
-DEFAULT_GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+# Default to the current Gemini Flash model
+DEFAULT_GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 GEMINI_API_BASE = os.getenv(
     "GEMINI_API_BASE",
     "https://generativelanguage.googleapis.com/v1beta/openai/",

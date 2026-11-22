@@ -66,14 +66,20 @@ def create_writing_task(
             "2. Market Dynamics & Key Trends\n"
             "3. Quantitative Financial Analysis (incorporating the statistical summary table)\n"
             "4. Strategic Risk Assessment & Opportunities\n"
-            "5. Forward Outlook & Recommendations\n\n"
+            "5. Forward Outlook & Recommendations\n"
+            "6. Sources & References\n\n"
             "Ensure copy is professional, balanced, and incorporates both empirical metrics and "
-            "qualitative research context. Reference all data sources and maintain clear section headers."
+            "qualitative research context. In the dedicated '6. Sources & References' section, "
+            "list the exact source titles and URLs gathered from the research task output. "
+            "Never invent or modify source titles or URLs. If no verified sources are available, "
+            "explicitly state that no verified web sources were returned."
         ),
         expected_output=(
             "A complete, publication-grade market research report in clean Markdown format, "
             "fully incorporating the financial statistics table, detailed market synthesis, "
-            "and professional section headers."
+            "professional section headers, and a dedicated '6. Sources & References' section "
+            "containing verified source titles and URLs (or explicitly stating that no verified "
+            "web sources were returned)."
         ),
         agent=agent,
         context=context_tasks or [],
